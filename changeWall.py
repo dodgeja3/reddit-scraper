@@ -26,7 +26,7 @@ while (found == False):
 	picurl = jsonres["data"]["children"][count]["data"]["url"]
 	filetype = picurl.split('.').pop()
 	if (filetype == "jpg"):
-		filename = jsonres["data"]["children"][count]["data"]["title"]
+		filename = jsonres["data"]["children"][count]["data"]["title"].replace(" ","")
 		found = True
 	else:
 		count = count + 1
@@ -40,7 +40,8 @@ f.write(requests.get(picurl).content)
 f.close()
 
 # Set the picture as background
-setup = "file://" + filepath
-os.system("gsettings set org.gnome.desktop.background picture-uri '%s'" % (setup))
+setup = "pcmanfm --set-wallpaper " + filepath
+os.system(setup)
+
 
 print ("Wallpaper set to: " + filename)
