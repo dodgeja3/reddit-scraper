@@ -41,6 +41,9 @@ f.close()
 
 # Set the picture as background
 setup = "file://" + filepath
-os.system("gsettings set org.gnome.desktop.background picture-uri '%s'" % (setup))
+#os.system("PID=$(pgrep gnome-session")
+#os.system("export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ|cut -d= -f2-)")
+
+os.system("gsettings set org.gnome.desktop.background picture-uri \"%s\"" % (setup))
 
 print ("Wallpaper set to: " + filename)
