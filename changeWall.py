@@ -27,6 +27,8 @@ while (found == False):
 	filetype = picurl.split('.').pop()
 	if (filetype == "jpg"):
 		filename = jsonres["data"]["children"][count]["data"]["title"]
+		filename = filename.replace("/","")
+		print(filename)
 		found = True
 	else:
 		count = count + 1
@@ -41,9 +43,18 @@ f.close()
 
 # Set the picture as background
 setup = "file://" + filepath
-#os.system("PID=$(pgrep gnome-session")
-#os.system("export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ|cut -d= -f2-)")
 
-os.system("gsettings set org.gnome.desktop.background picture-uri \"%s\"" % (setup))
+#os.system("xdg-open \"%s\"" % (setup))
+#
+#print("Would you like to set this wallpaper? (Y/N)")
+#
+#set_paper = input("Would you like to set this wallpaper? (Y/N)")
+
+#if (set_paper.lower() == "y"):
+os.system("gsettings set org.gnome.desktop.background picture-uri \"%s\" % (setup)")
+
+#	ps -ef | grep xdg
+#	else:
+#	os.system("
 
 print ("Wallpaper set to: " + filename)
