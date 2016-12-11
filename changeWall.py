@@ -5,6 +5,7 @@ import json
 import os
 import time
 import glob
+import string
 
 
 # Move current wallpaper into pastwalls directory
@@ -28,7 +29,6 @@ while (found == False):
 	if (filetype == "jpg"):
 		filename = jsonres["data"]["children"][count]["data"]["title"]
 		filename = filename.replace("/","")
-		print(filename)
 		found = True
 	else:
 		count = count + 1
@@ -51,7 +51,8 @@ setup = "file://" + filepath
 #set_paper = input("Would you like to set this wallpaper? (Y/N)")
 
 #if (set_paper.lower() == "y"):
-os.system("gsettings set org.gnome.desktop.background picture-uri \"%s\" % (setup)")
+print(setup)
+os.system("gsettings set org.gnome.desktop.background picture-uri \"%s\" " % (setup))
 
 #	ps -ef | grep xdg
 #	else:
