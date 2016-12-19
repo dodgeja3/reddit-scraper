@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 import requests
 import json
@@ -6,6 +6,7 @@ import os
 import time
 import glob
 import string
+
 
 
 # Move current wallpaper into pastwalls directory
@@ -19,6 +20,8 @@ except IndexError:
 res = requests.get("https://www.reddit.com/r/wallpapers/.json", headers = {'User-agent': 'example.programV1.0.1'})
 jsonres = json.loads(res.text)
 
+
+os.system("touch FUUUCK1")
 
 # Make sure url is jpg and get the title of post
 found = False
@@ -50,12 +53,11 @@ setup = "file://" + filepath
 #
 #set_paper = input("Would you like to set this wallpaper? (Y/N)")
 
+
+os.system("touch FUUUCK2")
+
 #if (set_paper.lower() == "y"):
-print(setup)
-os.system("gsettings set org.gnome.desktop.background picture-uri \"%s\" " % (setup))
-
-#	ps -ef | grep xdg
-#	else:
-#	os.system("
-
+#print(setup)
+os.system("/usr/bin/gsettings set org.gnome.desktop.background picture-uri \"%s\" " % (setup))
 print ("Wallpaper set to: " + filename)
+os.system("touch FUUUCK3")
