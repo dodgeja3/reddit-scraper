@@ -1,0 +1,36 @@
+#!/usr/bin/python
+
+import requests
+import json
+import os
+import time
+import glob
+
+
+
+# Get json from reddit/r/wallpapers
+
+link_collection = {}
+
+num_pages_to_scrape = 2
+after_uuid = ""
+keep_going = True
+for page in range(0, num_pages_to_scrape):
+	next_page = "?count=" + str(page*25) + "&after=" + after_uuid
+	res = requests.get("https://www.reddit.com/r/all/.json"+next_page, headers = {'User-agent': 'example.programV1.0.1'})
+	jsonres = json.loads(res.text)
+
+	all_children = jsonres["data"]["children"]
+	for child in all_children:
+		title = child["data"]["title"]
+		url = child["data"]["url"]
+		#title = jsonres["data"]["children"][0]["data"]["title"]
+		#url = jsonres["data"]["children"][0]["data"]["url"]
+		link_collection[title] = url
+
+	after_uuid = jsonres["data"]["after"]
+
+for key, value in link_collection.items():
+	print(key)
+	print(value)
+	print('\n')
